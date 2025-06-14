@@ -1,0 +1,133 @@
+/* RESET STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY BACKGROUND & FONT */
+body {
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #c3ecb2, #7dd6fc); /* Old gradient */
+  min-height: 100vh;
+  color: #004d40;
+}
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #118ab2;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0b5c72;
+}
+
+/* MAIN SECTION */
+main {
+  max-width: 700px;
+  margin: 3rem auto 4rem;
+  padding: 0 1rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 28px;
+  color: #004d40;
+}
+
+.completed-list {
+  padding: 0 10px;
+}
+
+/* TASK ITEMS */
+.task-item {
+  background-color: #a3f7b5; /* Green box */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.task-item:hover {
+  transform: translateY(-3px);
+}
+
+.task-item strong {
+  display: block;
+  font-size: 18px;
+  color: #004d40;
+  margin-bottom: 8px;
+}
+
+.task-item p {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+/* BUTTONS */
+.restore-btn,
+.delete-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.restore-btn {
+  background-color: #059669;
+}
+
+.restore-btn:hover {
+  background-color: #047857;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* NO TASK MESSAGE */
+#completedList p {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}

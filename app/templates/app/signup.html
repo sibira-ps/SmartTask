@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup - SmartTask</title>
+  <link rel="stylesheet" href="{% static 'app/css/signup.css' %}" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">SmartTask</div>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'signup' %}">Signup</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    </ul>
+  </nav>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+  <main class="form-container">
+    <h1>Signup</h1>
+    <form id="signupForm" method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <input type="text" name="fullName" id="fullName" placeholder="Full Name" required />
+      <input type="email" name="email" id="email" placeholder="Email" required />
+      <input type="password" name="password" id="password" placeholder="Password" required />
+      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit">Create Account</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match.');
+      }
+    });
+  </script>
+
+</body>
+</html>

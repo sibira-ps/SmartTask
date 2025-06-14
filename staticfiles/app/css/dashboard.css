@@ -1,0 +1,103 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #c3ecb2, #7dd6fc);
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  width: 100%;
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #118ab2;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0b5c72;
+}
+
+/* ===== DASHBOARD MAIN ===== */
+.dashboard-container {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem 3rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dashboard-container h1 {
+  color: #118ab2;
+  margin-bottom: 2rem;
+}
+
+/* Container for cards */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Individual cards */
+.dashboard-card {
+  background: #e0f7fa;
+  border-radius: 12px;
+  padding: 25px 20px;
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #00796b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-card h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.dashboard-card p {
+  font-size: 15px;
+  color: #004d40;
+}
+
+/* Hover effect */
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+  color: #004d40;
+}

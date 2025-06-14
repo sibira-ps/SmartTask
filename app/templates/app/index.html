@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartTask - Organize Your Life</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo">SmartTask</a>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'signup' %}">Signup</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+         <li><a href="{% url 'profile' %}">Profile</a></li> 
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="hero-content">
+    <h1>Welcome to SmartTask</h1>
+    <p>Organize your daily life, your way.</p>
+    <button onclick= window.location.href="{% url 'signup' %}">Get Started Free</button>
+</div>
+</main>
+
+<section class="why-smarttask">
+  <h2>Why Choose SmartTask?</h2>
+  <div class="reasons">
+    <div class="reason">
+      <i class="fa-solid fa-bolt fa-2x"></i>
+      <h3>Fast & Efficient</h3>
+      <p>Quickly create and manage tasks without unnecessary steps.</p>
+    </div>
+    <div class="reason">
+      <i class="fa-solid fa-shield-alt fa-2x"></i>
+      <h3>Secure</h3>
+      <p>Your tasks and data are safe with encrypted storage.</p>
+    </div>
+    <div class="reason">
+      <i class="fa-solid fa-users fa-2x"></i>
+      <h3>User Friendly</h3>
+      <p>Designed for everyone — clean UI, responsive, and easy to use.</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2>What Our Users Say</h2>
+  <div class="testimonial-boxes">
+    <div class="testimonial">
+      <p>"SmartTask helped me organize my work and finish projects faster!"</p>
+      <strong>— Arjun R, Developer</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Love the clean UI and the reminders feature. So useful!"</p>
+      <strong>— Neha S, Student</strong>
+    </div>
+  </div>
+</section>
+
+<section class="app-preview">
+  <h2>Take a Sneak Peek</h2>
+  <img src="{% static 'app/image/dashboard.png' %}" alt="SmartTask Dashboard Preview" />
+</section>
+
+<section class="about-section">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="{% static 'app/image/teamwork.png' %}" alt="Our Team">
+    </div>
+    <div class="about-content">
+      <h2>💼 About Us</h2>
+      <p>
+        At <strong>SmartTask</strong>, we believe that productivity should be simple, intuitive, and personalized.
+        Our mission is to help individuals and teams stay organized, focused, and stress-free—every day.
+      </p>
+      <ul class="about-highlights">
+        <li>✅ <strong>Founded by problem-solvers</strong> with a passion for clean design and smart planning</li>
+        <li>🌱 <strong>Helping over 10,000 users</strong> across students, freelancers, and teams</li>
+        <li>🚀 <strong>Committed to growth, feedback, and innovation</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact-us" class="contact-section">
+  <div class="container">
+    <h2>📬 Get in Touch</h2>
+    <p>We’d love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out to us anytime.</p>
+
+    <div class="contact-info">
+      <p><strong>📧 Email:</strong> support@smartnotes.com</p>
+      <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+      <p><strong>🏢 Address:</strong> 123, Innovation Street, Kochi, Kerala, India</p>
+    </div>
+
+    <form class="contact-form">
+      <div id="message-status" class="message-status"></div>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-about">
+      <h3>SmartTask</h3>
+      <p>Your personal productivity assistant.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+<li><a href="{% url 'login' %}">Login</a></li>
+
+      </ul>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+  <p class="copyright">&copy; 2025 SmartTask. All rights reserved.</p>
+</footer>
+
+<script>
+  const form = document.querySelector('.contact-form');
+  const status = document.getElementById('message-status');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const inputs = form.querySelectorAll('input, textarea');
+    let allFilled = true;
+    inputs.forEach(input => {
+      if (!input.value.trim()) allFilled = false;
+    });
+    if (allFilled) {
+      status.textContent = "✅ Message Sent!";
+      status.style.display = "block";
+      form.reset();
+      setTimeout(() => { status.style.display = "none"; }, 3000);
+    } else {
+      status.textContent = "⚠️ Please fill in all fields.";
+      status.style.display = "block";
+    }
+  });
+</script>
+</body>
+</html>

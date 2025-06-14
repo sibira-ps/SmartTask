@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - SmartTask</title>
+  <link rel="stylesheet" href="{% static 'app/css/dashboard.css' %}" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">SmartTask</div>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}" class="active">Dashboard</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>  <!-- Profile link added -->
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'signup' %}">Signup</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <div class="dashboard-container">
+    <header>
+      <h1>SmartTask Dashboard</h1>
+      <p class="user-info">
+        Welcome, <strong>{{ user_name }}</strong> ({{ user_email }})
+      </p>
+    </header>
+
+    <main>
+      <!-- Stats and Motivational Quote Section -->
+      <section class="dashboard-stats-quote">
+        <div class="stats-card">
+          <h3>Total Tasks</h3>
+          <p>{{ total_tasks }}</p>
+        </div>
+        <div class="stats-card">
+          <h3>Completed Tasks</h3>
+          <p>{{ completed_tasks }}</p>
+        </div>
+        <div class="stats-card">
+          <h3>Progress</h3>
+          <p>{{ progress }}%</p>
+        </div>
+        <div class="quote-card">
+          <blockquote>“{{ motivational_quote }}”</blockquote>
+        </div>
+      </section>
+
+      <!-- Dashboard Cards -->
+      <div class="dashboard-cards">
+        <a href="{% url 'task-list' %}" class="dashboard-card">
+          <h2>📋 Tasks</h2>
+          <p>View and manage all your tasks</p>
+        </a>
+
+        <a href="{% url 'add-task' %}" class="dashboard-card">
+          <h2>➕ Add Task</h2>
+          <p>Create a new task quickly</p>
+        </a>
+
+        <a href="{% url 'completed-tasks' %}" class="dashboard-card">
+          <h2>✅ Completed</h2>
+          <p>Check your completed tasks</p>
+        </a>
+
+        <a href="{% url 'projects' %}" class="dashboard-card">
+          <h2>📁 Projects</h2>
+          <p>View task groups by projects</p>
+        </a>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

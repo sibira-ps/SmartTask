@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Profile - SmartTask</title>
+  <link rel="stylesheet" href="{% static 'app/css/profile_v2.css' %}" />
+</head>
+<body>
+
+  <nav>
+    <div class="logo">SmartTask</div>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>User Profile</h1>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <form method="POST" action="{% url 'profile' %}">
+      {% csrf_token %}
+      <label>Full Name</label><br />
+      <input type="text" name="full_name" value="{{ user.first_name }}" required /><br /><br />
+
+      <label>Email</label><br />
+      <input type="email" name="email" value="{{ user.email }}" required /><br /><br />
+
+      <label>Default Task Category</label><br />
+      <select name="default_category">
+        <option value="Work" {% if user_profile.default_category == "Work" %}selected{% endif %}>Work</option>
+        <option value="Personal" {% if user_profile.default_category == "Personal" %}selected{% endif %}>Personal</option>
+        <option value="Health" {% if user_profile.default_category == "Health" %}selected{% endif %}>Health</option>
+        <option value="Study" {% if user_profile.default_category == "Study" %}selected{% endif %}>Study</option>
+      </select><br /><br />
+
+      <label>
+        <input type="checkbox" name="email_notifications" {% if user_profile.email_notifications %}checked{% endif %} />
+        Receive Email Notifications
+      </label><br /><br />
+
+      <button type="submit">Update Profile</button>
+    </form>
+
+    
+  </main>
+
+</body>
+</html>
