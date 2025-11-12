@@ -1,0 +1,15 @@
+# Ignore virtual environment
+env1/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore database
+db.sqlite3
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore static files collected
+/staticfiles/

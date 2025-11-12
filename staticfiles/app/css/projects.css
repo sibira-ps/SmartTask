@@ -14,7 +14,7 @@ html, body {
 nav {
   width: 100%;
   background: #fff;
-  padding: 0.5rem 1.5rem; /* Slightly reduced horizontal padding */
+  padding: 0.5rem 1.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
@@ -23,29 +23,39 @@ nav {
   top: 0;
   z-index: 1000;
   margin: 0;
-  overflow-x: auto; /* Allows horizontal scroll if needed */
-  white-space: nowrap; /* Prevent nav items from wrapping */
+  overflow-x: auto;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeSlideDown 1s forwards;
+}
+
+@keyframes fadeSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 nav .logo {
   font-weight: bold;
   font-size: 1.4rem;
   color: #000;
-  flex-shrink: 0; /* Prevent logo from shrinking */
+  flex-shrink: 0;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1rem; /* Reduced gap */
+  gap: 1rem;
   margin: 0;
   padding: 0;
-  flex-wrap: nowrap; /* Prevent wrapping */
-  overflow-x: auto; /* Allow scrolling horizontally on smaller screens */
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 nav ul li {
-  flex-shrink: 0; /* Prevent nav items from shrinking */
+  flex-shrink: 0;
 }
 
 nav ul li a {
@@ -53,22 +63,31 @@ nav ul li a {
   color: #0284c7;
   font-weight: 600;
   transition: color 0.3s ease;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
 }
 
 nav ul li a:hover {
   color: #0369a1;
 }
 
-
 /* Container for the page content */
 .container {
   max-width: 600px;
-  margin: 2rem auto 3rem; /* Some spacing below navbar */
+  margin: 2rem auto 3rem;
   background: white;
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 1s 0.5s forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Main heading */
@@ -94,11 +113,13 @@ h2 {
   justify-content: space-between;
   align-items: center;
   background-color: #e0f2fe;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 }
 
 .project-card:hover {
   background-color: #bae6fd;
+  transform: scale(1.02);
 }
 
 .project-card h3 {
@@ -122,20 +143,23 @@ h2 {
   padding: 10px 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-view:hover {
   background-color: #0369a1;
+  transform: scale(1.05);
 }
 
 /* Task list inside projects */
 .task-list {
   margin-top: 12px;
   padding-left: 20px;
-  display: none; /* hidden initially */
+  max-height: 0;
+  overflow: hidden;
   background: #dbeafe;
   border-radius: 8px;
+  transition: max-height 0.5s ease, padding 0.5s ease;
 }
 
 .task-list li {
@@ -147,4 +171,10 @@ h2 {
 
 .task-list li:last-child {
   border-bottom: none;
+}
+
+/* Class to expand task list */
+.task-list.active {
+  max-height: 500px;
+  padding: 12px 20px;
 }

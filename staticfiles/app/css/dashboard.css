@@ -9,6 +9,30 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #c3ecb2, #7dd6fc);
   min-height: 100vh;
+  animation: fadeInBody 0.8s ease-in;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInBody {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInQuote {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== NAVBAR ===== */
@@ -47,7 +71,7 @@ nav ul li a:hover {
 
 /* ===== DASHBOARD MAIN ===== */
 .dashboard-container {
-  max-width: 900px;
+  max-width: 950px;
   margin: 4rem auto;
   padding: 2rem 3rem;
   background: #fff;
@@ -58,10 +82,70 @@ nav ul li a:hover {
 
 .dashboard-container h1 {
   color: #118ab2;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Container for cards */
+/* User Info */
+.user-info {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* === Stats + Quote Section === */
+.dashboard-stats-quote {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  animation: fadeInBody 1s ease-in;
+}
+
+/* Individual Stats Cards */
+.stats-card {
+  background: #f1f8e9;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.stats-card h3 {
+  color: #33691e;
+  margin-bottom: 8px;
+}
+
+.stats-card p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1b5e20;
+}
+
+.stats-card:hover {
+  transform: scale(1.05);
+}
+
+/* Motivational Quote Styling */
+.quote-card {
+  flex: 1 1 100%;
+  background: #e1f5fe;
+  padding: 1rem 1.2rem;
+  border-left: 5px solid #0288d1;
+  margin-top: 1rem;
+  border-radius: 8px;
+  animation: slideInQuote 1s ease;
+}
+
+.quote-card blockquote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #01579b;
+  line-height: 1.5;
+}
+
+/* === Dashboard Buttons === */
 .dashboard-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -69,7 +153,6 @@ nav ul li a:hover {
   justify-items: center;
 }
 
-/* Individual cards */
 .dashboard-card {
   background: #e0f7fa;
   border-radius: 12px;
@@ -83,6 +166,7 @@ nav ul li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeInBody 0.5s ease-in;
 }
 
 .dashboard-card h2 {
@@ -95,7 +179,6 @@ nav ul li a:hover {
   color: #004d40;
 }
 
-/* Hover effect */
 .dashboard-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);

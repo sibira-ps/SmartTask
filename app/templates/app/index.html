@@ -18,7 +18,7 @@
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'signup' %}">Signup</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
-         <li><a href="{% url 'profile' %}">Profile</a></li> 
+        <li><a href="{% url 'profile' %}">Profile</a></li>
         <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
       </ul>
     </div>
@@ -29,8 +29,8 @@
   <div class="hero-content">
     <h1>Welcome to SmartTask</h1>
     <p>Organize your daily life, your way.</p>
-    <button onclick= window.location.href="{% url 'signup' %}">Get Started Free</button>
-</div>
+    <button onclick="window.location.href='{% url 'signup' %}';return false;">Get Started Free</button>
+  </div>
 </main>
 
 <section class="why-smarttask">
@@ -104,13 +104,24 @@
       <p><strong>🏢 Address:</strong> 123, Innovation Street, Kochi, Kerala, India</p>
     </div>
 
-    <form class="contact-form">
-      <div id="message-status" class="message-status"></div>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
+    <form method="post" class="contact-form">
+      {% csrf_token %}
+      {{ form.as_p }}
       <button type="submit">Send Message</button>
     </form>
+
+    <div class="submitted-messages">
+      <h3>📢 Recent Messages</h3>
+      {% for msg in messages_list %}
+        <div class="message-box">
+          <p><strong>{{ msg.name }}</strong> ({{ msg.email }})</p>
+          <p>{{ msg.message }}</p>
+          <hr>
+        </div>
+      {% empty %}
+        <p>No messages yet.</p>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -125,8 +136,7 @@
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'signup' %}">Sign Up</a></li>
-<li><a href="{% url 'login' %}">Login</a></li>
-
+        <li><a href="{% url 'login' %}">Login</a></li>
       </ul>
     </div>
     <div class="footer-social">
@@ -139,27 +149,5 @@
   <p class="copyright">&copy; 2025 SmartTask. All rights reserved.</p>
 </footer>
 
-<script>
-  const form = document.querySelector('.contact-form');
-  const status = document.getElementById('message-status');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const inputs = form.querySelectorAll('input, textarea');
-    let allFilled = true;
-    inputs.forEach(input => {
-      if (!input.value.trim()) allFilled = false;
-    });
-    if (allFilled) {
-      status.textContent = "✅ Message Sent!";
-      status.style.display = "block";
-      form.reset();
-      setTimeout(() => { status.style.display = "none"; }, 3000);
-    } else {
-      status.textContent = "⚠️ Please fill in all fields.";
-      status.style.display = "block";
-    }
-  });
-</script>
 </body>
 </html>

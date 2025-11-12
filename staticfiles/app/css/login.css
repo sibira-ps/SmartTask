@@ -5,10 +5,36 @@
   box-sizing: border-box;
 }
 
+/* ===== KEYFRAMES ===== */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== BODY ===== */
 body {
   font-family: sans-serif;
   background: linear-gradient(135deg, #c3ecb2, #7dd6fc);
   min-height: 100vh;
+  animation: fadeSlideIn 1s ease;
 }
 
 /* ===== NAVBAR ===== */
@@ -20,6 +46,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeSlideIn 1s ease;
 }
 
 nav .logo {
@@ -53,32 +80,81 @@ nav ul li a:hover {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeSlideIn 1s ease;
 }
 
 .form-container h1 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #000;
+  animation: fadeSlideIn 1s ease;
 }
 
-.form-container form input,
-.form-container form button {
+.form-container form input {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  animation: fadeSlideIn 0.8s ease;
+  transition: transform 0.2s ease;
+}
+
+.form-container form input:focus {
+  border-color: #118ab2;
+  outline: none;
+  transform: translateY(-2px);
 }
 
 .form-container form button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
   background: #118ab2;
   color: white;
-  border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  animation: fadeSlideIn 1s ease;
 }
 
 .form-container form button:hover {
   background: #0b5c72;
+  animation: bounceIn 0.3s ease;
+}
+
+/* ===== LINK FORGOT PASSWORD ===== */
+.form-container a {
+  display: block;
+  text-align: right;
+  color: #118ab2;
+  font-size: 0.9rem;
+  text-decoration: none;
+  animation: fadeSlideIn 1s ease;
+  transition: color 0.3s ease;
+}
+
+.form-container a:hover {
+  color: #0b5c72;
+}
+
+/* ===== MESSAGE BOX ===== */
+.messages {
+  list-style: none;
+  max-width: 400px;
+  margin: 1rem auto;
+  padding: 0;
+  text-align: center;
+  animation: fadeSlideIn 1s ease;
+}
+
+.messages li {
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  background-color: #ffe0e0;
+  color: #b00020;
+  font-weight: 500;
 }

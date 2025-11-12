@@ -22,90 +22,27 @@
   <div class="container">
     <main>
       <h2>Projects</h2>
-      <div class="projects-list">
 
-        <!-- Work Project -->
-        <div class="project-card">
-          <h3>Work</h3>
-          <p>{{ work_tasks|length }} Tasks</p>
-          <button class="btn-view">View Tasks</button>
-          <ul class="task-list" style="display: none;">
-            {% for task in work_tasks %}
-              <li>{{ task.title }}</li>
-            {% empty %}
-              <li>No tasks found.</li>
-            {% endfor %}
-          </ul>
-        </div>
+      {% if category_data %}
+        {% for category, tasks in category_data.items %}
+          <div class="category-group">
+            <h3>{{ category }}</h3>
+            <div class="task-box">
+              {% for task in tasks %}
+                <div class="task-card">
+                  <p><strong>{{ task.title }}</strong></p>
+                  <p>Start: {{ task.start_date }}</p>
+                  <p>Due: {{ task.due_date }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No tasks found.</p>
+      {% endif %}
 
-        <!-- Personal Project -->
-        <div class="project-card">
-          <h3>Personal</h3>
-          <p>{{ personal_tasks|length }} Tasks</p>
-          <button class="btn-view">View Tasks</button>
-          <ul class="task-list" style="display: none;">
-            {% for task in personal_tasks %}
-              <li>{{ task.title }}</li>
-            {% empty %}
-              <li>No tasks found.</li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <!-- Health Project -->
-        <div class="project-card">
-          <h3>Health</h3>
-          <p>{{ health_tasks|length }} Tasks</p>
-          <button class="btn-view">View Tasks</button>
-          <ul class="task-list" style="display: none;">
-            {% for task in health_tasks %}
-              <li>{{ task.title }}</li>
-            {% empty %}
-              <li>No tasks found.</li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        <!-- Study Project -->
-        <div class="project-card">
-          <h3>Study</h3>
-          <p>{{ study_tasks|length }} Tasks</p>
-          <button class="btn-view">View Tasks</button>
-          <ul class="task-list" style="display: none;">
-            {% for task in study_tasks %}
-              <li>{{ task.title }}</li>
-            {% empty %}
-              <li>No tasks found.</li>
-            {% endfor %}
-          </ul>
-        </div>
-
-      </div>
     </main>
   </div>
-
-  <script>
-    document.querySelectorAll('.btn-view').forEach(button => {
-      button.addEventListener('click', () => {
-        const taskList = button.nextElementSibling;
-
-        if (taskList.classList.contains('show')) {
-          taskList.classList.remove('show');
-          taskList.classList.add('hide');
-          button.textContent = 'View Tasks';
-
-          taskList.addEventListener('animationend', function handler() {
-            taskList.style.display = 'none';
-            taskList.classList.remove('hide');
-            taskList.removeEventListener('animationend', handler);
-          });
-        } else {
-          taskList.style.display = 'block';
-          taskList.classList.add('show');
-          button.textContent = 'Hide Tasks';
-        }
-      });
-    });
-  </script>
 </body>
 </html>

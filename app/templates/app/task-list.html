@@ -8,33 +8,35 @@
   <link rel="stylesheet" href="{% static 'app/css/task-list.css' %}" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <nav>
-      <div class="logo">SmartTask</div>
-      <ul class="nav-links">
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'profile' %}">Profile</a></li> 
-        <li><a href="{% url 'dashboard' %}" class="active">Dashboard</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- Navbar -->
+<header>
+  <nav>
+    <div class="logo">SmartTask</div>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'profile' %}">Profile</a></li>
+      <li><a href="{% url 'dashboard' %}" class="active">Dashboard</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Main Content -->
-  <main>
-    <div class="task-container">
-      <h1>My Tasks</h1>
+<!-- Main Content -->
+<main>
+  <div class="task-container">
+    <h1>My Tasks</h1>
 
-      {% if tasks %}
-        {% for task in tasks %}
-          <div class="task-item">
-            <form method="POST" action="{% url 'toggle-task-completion' task.id %}">
-              {% csrf_token %}
-              <div class="task-left">
+    {% if tasks %}
+      {% for task in tasks %}
+        <div class="task-item">
+          <form method="POST" action="{% url 'toggle-task-completion' task.id %}">
+            {% csrf_token %}
+            <div class="task-left">
+              <label>
                 <input 
                   type="checkbox" 
                   name="is_completed" 
@@ -42,21 +44,28 @@
                   {% if task.is_completed %}checked{% endif %} 
                 />
                 <span class="task-name">{{ task.title }}</span>
-                {% if task.due_date %}
-                  <small>Due: {{ task.due_date|date:"M d, Y" }}</small>
-                {% endif %}
-              </div>
-            </form>
-            <div class="task-actions">
-              <!-- Add edit/delete buttons if needed -->
+              </label>
+              {% if task.due_date %}
+                <small>Due: {{ task.due_date|date:"M d, Y" }}</small>
+              {% endif %}
             </div>
+          </form>
+
+          <div class="task-actions">
+            <a href="{% url 'edit-task' task.id %}" class="edit-btn">Edit</a>
+
+            <form method="POST" action="{% url 'delete-task' task.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
           </div>
-        {% endfor %}
-      {% else %}
-        <p>No pending tasks found.</p>
-      {% endif %}
-    </div>
-  </main>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No pending tasks found.</p>
+    {% endif %}
+  </div>
+</main>
 
 </body>
 </html>

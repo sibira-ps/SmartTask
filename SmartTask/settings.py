@@ -10,7 +10,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = 'django-insecure-dbo*7v&9n^^%krvhy(p4s0^a5$n2%gt&51sz(6b)$6lwf38ab&'
 
@@ -18,7 +17,6 @@ SECRET_KEY = 'django-insecure-dbo*7v&9n^^%krvhy(p4s0^a5$n2%gt&51sz(6b)$6lwf38ab&
 DEBUG = True  # <-- Set to False for production
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Add your domain here for production
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -62,7 +60,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SmartTask.wsgi.application'
 
-
 # Database
 DATABASES = {
     'default': {
@@ -70,7 +67,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -88,26 +84,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
-# Location where Django looks for your static files during development
+# Staticfiles directories (absolute-safe path)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(str(BASE_DIR), 'static'),
 ]
 
 # Where Django will collect static files for production
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATIC_ROOT = os.path.join(str(BASE_DIR), 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login URL redirect
 LOGIN_URL = '/login/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sibiraps@gmail.com'
+EMAIL_HOST_PASSWORD = 'lvpklefvvqtssryk'
